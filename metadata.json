@@ -1,0 +1,9 @@
+{
+  "name": "Chromatic Detectives",
+  "description": "A 15-stage immersive noir-styled itinerary application featuring AR simulations, decryptions, and location-based mechanics.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

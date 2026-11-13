@@ -1,0 +1,124 @@
+:root {
+  --void-black: #030303;
+  --neon-magenta: #f53fe8;
+  --neon-purple: #ae3efe;
+  --solar-flare-gold: #ffb622;
+  --acid-yellow: #ccff00;
+  --cyan-ar: #00f2ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--void-black);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Smooth page transitions */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--acid-yellow);
+  white-space: nowrap;
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--acid-yellow); }
+}
+
+/* Glitch text */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+.glitch-text:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Neon glow pulse */
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 5px var(--neon-magenta), 0 0 10px var(--neon-magenta); }
+  50% { box-shadow: 0 0 15px var(--neon-magenta), 0 0 30px var(--neon-magenta), 0 0 45px var(--neon-magenta); }
+}
+
+.neon-pulse {
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Celebration particles */
+@keyframes float-up {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+
+.particle {
+  animation: float-up 3s ease-out forwards;
+}
+
+/* Shake animation for wrong input */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Scanline overlay */
+.scanline {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  z-index: 5;
+}
+/* Bottom nav safety padding */
+.pb-safe-nav {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+}
+
+.pb-hub-nav {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+}

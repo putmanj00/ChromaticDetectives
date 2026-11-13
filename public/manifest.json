@@ -1,0 +1,22 @@
+{
+  "name": "Chromatic Detectives",
+  "short_name": "Chromatic Detectives",
+  "description": "A 15-stage immersive scavenger hunt across Cincinnati",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#ae3efe",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
