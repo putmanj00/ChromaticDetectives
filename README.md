@@ -22,6 +22,25 @@ npm run build                # production build in dist/
 npm run test:e2e             # Playwright (needs `npx playwright install`)
 ```
 
+## API keys: what you need to supply
+
+The app runs without any keys, but some features stay off until you supply your own. No keys are included in this repo, and the public live demo is deployed without any, so the map and the AI features are disabled there.
+
+| Variable | Enables | Without it |
+|---|---|---|
+| `VITE_GOOGLE_MAPS_API_KEY` | World map screen (Google Maps JavaScript API) | The map does not load |
+| `GEMINI_API_KEY` | Gemini features: video generation, radio voice, photo verification | Those stages fall back or fail; stages marked skippable can be skipped |
+| `VITE_GOOGLE_AI_KEY` | Optional alternative Gemini key read by Stage 03 and the vision helper | `GEMINI_API_KEY` is used instead |
+
+To enable everything:
+
+1. Create a Google Maps JavaScript API key in Google Cloud Console and a Gemini API key in Google AI Studio.
+2. Local development: copy `.env.example` to `.env.local` and fill in the values.
+3. Hosted (for example Vercel): add the same variables in the project's environment settings, then redeploy. Keys are read at build time, so a new build is required after changing them.
+4. Restrict each key before using it on a public site (see Security notes below).
+
+GPS stages, puzzles, progress tracking and navigation need no keys.
+
 ## Security notes
 
 Any API key set at build time is shipped to every visitor's browser. `vite.config.ts` compiles `GEMINI_API_KEY` into the bundle, and `screens/WorldMap.tsx` reads `VITE_GOOGLE_MAPS_API_KEY` the same way. Treat both as public. Use a restricted key (HTTP referrer restriction, API restriction, quota cap) and never a key that is shared with other projects. Do not commit `.env*` files; only `.env.example` is tracked.
@@ -32,7 +51,7 @@ All stage locations, radii, hints and puzzle settings live in `lib/stages.ts`. S
 
 ## Limits
 
-- Requires a Gemini key and a Google Maps key for the AI-powered stages and the map; without them those features fall back or fail.
+- The AI-powered stages and the map need your own Gemini and Google Maps keys (see "API keys: what you need to supply"); without them those features fall back or fail.
 - Keys are exposed in the client bundle (see Security notes); there is no server-side proxy.
 - No backend: progress lives in one browser's `localStorage` and can be cleared or edited by the player.
 - Locations, story and photos are specific to one hunt in the Cincinnati area; it is not a general-purpose hunt builder.
