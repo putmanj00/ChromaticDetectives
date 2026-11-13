@@ -8,7 +8,8 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    # Pinned: the Playwright version in package.json has no browser build for ubuntu 26.04 (ubuntu-latest).
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
